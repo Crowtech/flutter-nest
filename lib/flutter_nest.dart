@@ -53,7 +53,7 @@ class NestRest {
 
   static Map<String,String> _addAuth(String auth, Map<String,String> headers) {
     if (auth != null) {
-      headers["Authorization"] = auth;
+      headers["Authorization"] = "Bearer $auth";
     }
 
     return headers;
