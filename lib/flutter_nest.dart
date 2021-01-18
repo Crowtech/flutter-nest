@@ -1,4 +1,5 @@
 library flutter_nest;
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io' as io;
 import 'package:flutter/foundation.dart' as found;
@@ -53,7 +54,11 @@ class NestRest {
 
   static Map<String,String> _addAuth(String auth, Map<String,String> headers) {
 
-    Map<String, String> newHeaders = headers;
+    Map<String, String> newHeaders = HashMap<String, String>();
+
+    for (String key in headers.keys) {
+      newHeaders[key] = headers[key];
+    }
 
     if (auth != null) {
       newHeaders["Authorization"] = "Bearer $auth";
