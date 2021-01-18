@@ -112,7 +112,7 @@ class NestRest {
 
   static Future<http.Response> put(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'},bool sendError = false, VoidCallback onError}) {
     NestInfo.log("PUTting data at $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.post(url, headers: _addAuth(auth, headers)).then((response) {
+    return http.put(url, headers: _addAuth(auth, headers)).then((response) {
       return _handleResponse(response, putCodes, sendError, onError);
     });
   }
