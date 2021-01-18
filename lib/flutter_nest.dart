@@ -86,6 +86,8 @@ class NestRest {
     }
   }
 
+  /// Makes a GET request to `url`. If the request does not result in a success, it will only return the response object if `sendError` is true.
+  /// If an error occurs, this will call `onError`.
   static Future<http.Response> get(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'},bool sendError = false, VoidCallback onError}) {
     NestInfo.log("GETting data from $url using ${auth == null ? "no token" : "token: $auth"}");
     return http.get(url, headers: _addAuth(auth, headers)).then((response) {
@@ -93,6 +95,8 @@ class NestRest {
     });
   }
 
+  /// Makes a POST request to `url`, with no data. Use [post] if you want to post data. If the request does not result in a success, it will only return the response object if `sendError` is true.
+  /// If an error occurs, this will call `onError`.
   static Future<http.Response> postNew(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'},bool sendError = false, VoidCallback onError}) {
     NestInfo.log("POSTing empty data to $url using ${auth == null ? "no token" : "token: $auth"}");
     return http.post(url, headers: _addAuth(auth, headers)).then((response) {
@@ -100,6 +104,8 @@ class NestRest {
     });
   }
 
+  /// Makes a POST request to `url`, with the body set as `data`. Use [postNew] if you do not want to post data. If the request does not result in a success, it will only return the response object if `sendError` is true.
+  /// If an error occurs, this will call `onError`.
   static Future<http.Response> post(String url,Map<String, dynamic> data, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'},bool sendError = false, VoidCallback onError}) {
     
     final encodedData = jsonEncode(data);
@@ -110,6 +116,8 @@ class NestRest {
     });
   }
 
+  /// Makes a PUT request to `url`. If the request does not result in a success, it will only return the response object if `sendError` is true.
+  /// If an error occurs, this will call `onError`.
   static Future<http.Response> put(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'},bool sendError = false, VoidCallback onError}) {
     NestInfo.log("PUTting data at $url using ${auth == null ? "no token" : "token: $auth"}");
     return http.put(url, headers: _addAuth(auth, headers)).then((response) {
@@ -117,6 +125,8 @@ class NestRest {
     });
   }
 
+  /// Makes a DELETE request to `url`. If the request does not result in a success, it will only return the response object if `sendError` is true.
+  /// If an error occurs, this will call `onError`.
   static Future<http.Response> delete(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'},bool sendError = false, VoidCallback onError}) {
     NestInfo.log("DELETting data at $url using ${auth == null ? "no token" : "token: $auth"}");
     return http.delete(url, headers: _addAuth(auth, headers)).then((response) {
