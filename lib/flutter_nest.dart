@@ -52,11 +52,14 @@ class NestRest {
   static List<int> putCodes = [200,204];
 
   static Map<String,String> _addAuth(String auth, Map<String,String> headers) {
+
+    Map<String, String> newHeaders = headers;
+
     if (auth != null) {
-      headers["Authorization"] = "Bearer $auth";
+      newHeaders["Authorization"] = "Bearer $auth";
     }
 
-    return headers;
+    return newHeaders;
   }
 
   static String _responseOutput(http.Response r) => "Request: ${r.request} returned Status Code: ${r.statusCode}.\nHeaders: ${r.headers}\nBody: ${r.body}";
