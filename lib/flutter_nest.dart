@@ -82,7 +82,7 @@ class NestRest {
   }
 
   /// Makes a POST request to `url`, with the body set as `data`. Use [postNew] if you do not want to post data.
-  static Future<http.Response> post(String url,Map<String, dynamic> data, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
+  static Future<http.Response> post(String url,dynamic data, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
     
 
     NestInfo.log("POSTing $data to $url using ${auth == null ? "no token" : "token: $auth"}");
