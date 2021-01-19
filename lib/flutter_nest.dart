@@ -1,5 +1,6 @@
 library flutter_nest;
 import 'dart:collection';
+import 'dart:convert';
 import 'dart:io' as io;
 import 'package:flutter/foundation.dart' as found;
 import 'package:http/http.dart' as http;
@@ -84,6 +85,9 @@ class NestRest {
   /// Makes a POST request to `url`, with the body set as `data`. Use [postNew] if you do not want to post data.
   static Future<http.Response> post(String url,dynamic data, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
     
+    if (headers["Content-Type"] == "application/json") {
+      data = jsonEncode(data);
+    }
 
     NestInfo.log("POSTing $data to $url using ${auth == null ? "no token" : "token: $auth"}");
     return http.post(url, body:data, headers: _addAuth(auth, headers)).then((response) {
