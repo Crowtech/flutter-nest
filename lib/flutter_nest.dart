@@ -98,6 +98,11 @@ class NestRest {
 
   /// Makes a PUT request to `url`, with optional `body` data.
   static Future<http.Response> put(String url, {String auth, dynamic body, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
+    
+    if (headers["Content-Type"] == "application/json") {
+      body = jsonEncode(body);
+    }
+    
     NestInfo.log("PUTting ${body ?? "data"} at $url using ${auth == null ? "no token" : "token: $auth"}");
     return http.put(url, body: body, headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
