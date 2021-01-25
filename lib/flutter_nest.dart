@@ -82,24 +82,24 @@ class NestRest {
     });
   }
 
-  /// Makes a POST request to `url`, with the body set as `data`. Use [postNew] if you do not want to post data.
-  static Future<http.Response> post(String url,dynamic data, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
+  /// Makes a POST request to `url`, with the body set as `body`. Use [postNew] if you do not want to post data.
+  static Future<http.Response> post(String url,dynamic body, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
     
     if (headers["Content-Type"] == "application/json") {
-      data = jsonEncode(data);
+      body = jsonEncode(body);
     }
 
-    NestInfo.log("POSTing $data to $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.post(url, body:data, headers: _addAuth(auth, headers)).then((response) {
+    NestInfo.log("POSTing $body to $url using ${auth == null ? "no token" : "token: $auth"}");
+    return http.post(url, body:body, headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
   }
 
-  /// Makes a PUT request to `url`.
-  static Future<http.Response> put(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
-    NestInfo.log("PUTting data at $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.put(url, headers: _addAuth(auth, headers)).then((response) {
+  /// Makes a PUT request to `url`, with optional `body` data.
+  static Future<http.Response> put(String url, {String auth, dynamic body, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
+    NestInfo.log("PUTting ${body ?? "data"} at $url using ${auth == null ? "no token" : "token: $auth"}");
+    return http.put(url, body: body, headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
