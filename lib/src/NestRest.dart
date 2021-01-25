@@ -1,4 +1,4 @@
-import 'package:flutter_nest/NestInfo.dart';
+import 'package:flutter_nest/src/NestInfo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:collection';
 import 'dart:convert';

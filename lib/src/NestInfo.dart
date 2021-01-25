@@ -1,6 +1,6 @@
 import 'dart:io' as io;
 import 'package:flutter/foundation.dart' as found;
-import 'package:flutter_nest/NestPlatform.dart';
+import 'package:flutter_nest/src/NestPlatform.dart';
 
 
 
