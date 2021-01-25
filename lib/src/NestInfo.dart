@@ -1,5 +1,6 @@
 import 'dart:io' as io;
 import 'package:flutter/foundation.dart' as found;
+import 'package:flutter/material.dart';
 import 'package:flutter_nest/src/NestPlatform.dart';
 
 
@@ -26,10 +27,19 @@ class NestInfo {
     return platform;
   }
 
+  /// If true, the application is running in debug mode
   static bool debugMode = found.kDebugMode;
 
-  static void log(Object object) {
-    if (debugMode) print(object);
+  /// This will log info, only if `NestInfo.debugMode` is `true`. Setting the `debug` flag to `true`
+  /// will call `debugPrint` as opposed to just `print`.
+  static void log(Object object, {debug = false}) {
+    if (debugMode) {
+      if (debug) {
+        debugPrint(object);
+      } else {
+        print(object);
+      }
+    }
   }
 
 }
