@@ -1,13 +1,8 @@
 import 'dart:io' as io;
 import 'package:flutter/foundation.dart' as found;
+import 'package:flutter_nest/NestPlatform.dart';
 
-///An enum storing each platform the application might be running on
-enum Platform {
-  android,
-  ios,
-  web,
-  unknown
-}
+
 
 /// This class contains methods for getting information about the application, such as platform, and whether or not it is running in debug mode
 class NestInfo {
