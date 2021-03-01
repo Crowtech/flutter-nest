@@ -27,7 +27,7 @@ class NestRest {
   /// Makes a GET request to `url`. Returns a http Response object
   static Future<http.Response> get(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
     NestInfo.log("GETting data from $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.get(Uri.parse(url), headers: _addAuth(auth, headers)).then((response) {
+    return http.get(Uri.parse(Uri.encodeFull(url)), headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
@@ -36,7 +36,7 @@ class NestRest {
   /// Makes a POST request to `url`, with no data. Use [post] if you want to post data.
   static Future<http.Response> postNew(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
     NestInfo.log("POSTing empty data to $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.post(Uri.parse(url), headers: _addAuth(auth, headers)).then((response) {
+    return http.post(Uri.parse(Uri.encodeFull(url)), headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
@@ -50,7 +50,7 @@ class NestRest {
     }
 
     NestInfo.log("POSTing $body to $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.post(Uri.parse(url), body:body, headers: _addAuth(auth, headers)).then((response) {
+    return http.post(Uri.parse(Uri.encodeFull(url)), body:body, headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
@@ -64,7 +64,7 @@ class NestRest {
     }
     
     NestInfo.log("PUTting ${body ?? "data"} at $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.put(Uri.parse(url), body: body, headers: _addAuth(auth, headers)).then((response) {
+    return http.put(Uri.parse(Uri.encodeFull(url)), body: body, headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
@@ -73,7 +73,7 @@ class NestRest {
   /// Makes a DELETE request to `url`.
   static Future<http.Response> delete(String url, {String auth, Map<String, String> headers = const {'Content-Type': 'application/json','Accept': 'application/json'}}) {
     NestInfo.log("DELETting data at $url using ${auth == null ? "no token" : "token: $auth"}");
-    return http.delete(Uri.parse(url), headers: _addAuth(auth, headers)).then((response) {
+    return http.delete(Uri.parse(Uri.encodeFull(url)), headers: _addAuth(auth, headers)).then((response) {
       NestInfo.log(_responseOutput(response));
       return response;
     });
