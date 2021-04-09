@@ -35,7 +35,7 @@ class NestInfo {
   static void log(Object object, {debug = false}) {
     if (debugMode) {
       if (debug) {
-        debugPrint(object);
+        debugPrint(object as String?);
       } else {
         print(object);
       }
