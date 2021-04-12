@@ -32,7 +32,7 @@ class NestInfo {
 
   /// This will log info, only if `NestInfo.debugMode` is `true`. Setting the `debug` flag to `true`
   /// will call `debugPrint` as opposed to just `print`.
-  static void log(Object object, {debug = false}) {
+  static void log(Object? object, {debug = false}) {
     if (debugMode) {
       if (debug) {
         debugPrint(object as String?);
